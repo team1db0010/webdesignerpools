@@ -93,7 +93,7 @@
 
     /* Slider */
     .slider { position: relative; border-radius: var(--radius); overflow: hidden; background: #0a1024; border: 1px solid rgba(255,255,255,.06); }
-    .slides { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 100% 100% 100%; /* placeholder; JS will control */ }
+    .slides { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: 100%; transition: transform .6s ease; }
     .slide { width: 100%; height: clamp(260px, 52vw, 520px); display: grid; place-items: center; }
     .slide img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.05); }
     .slider-controls { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; pointer-events: none; }
@@ -162,9 +162,9 @@
   <section id="work">
     <div class="wrap">
       <h2 class="section-title">Featured Projects</h2>
-      <p class="section-lead">Tap arrows or swipe. Add your photos to <code>/images/</code> and update the list in the script below.</p>
+      <p class="section-lead">Tip: Either edit the <code>defaultSlides</code> list below OR drop <code>images.json</code> into <code>/images/</code> (e.g. <code>["images/pic1.jpg", "images/pic2.jpg"]</code>).</p>
 
-      <div class="slider" id="slider" aria-label="Slideshow of pool projects">
+      <div class="slider" id="slider" aria-label="Slideshow of pool projects" aria-live="polite">
         <ul class="slides" id="slides"></ul>
         <div class="slider-controls">
           <button class="ctrl" id="prevBtn" aria-label="Previous slide">‹</button>
@@ -230,4 +230,179 @@
         <label>Message
           <textarea name="message" placeholder="Tell us about your backyard, timeline, and budget..."></textarea>
         </label>
-        <button class="btn
+        <button class="btn btn-primary" type="submit">Send</button>
+        <p class="note">By submitting, you agree to be contacted about your project. We don’t share your info.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      © <span id="y"></span> Designer Pools by Garry Bair LLC · Kansas City Metro · <a href="mailto:info@yourdomain.com" style="color:#9fd8ff">info@yourdomain.com</a>
+    </div>
+  </footer>
+
+  <script>
+    // =============================
+    // SLIDES CONFIG
+    // Option A) Edit this list to match your filenames in /images (exact case & extension)
+    const defaultSlides = [
+      // 'images/pool1.jpg',
+      // 'images/pool2.jpg',
+      // 'images/pool3.jpg',
+      // 'images/pool4.jpg'
+    ];
+
+    // Option B) Create /images/images.json with: ["images/one.jpg", "images/two.jpg", ...]
+    async function loadSlides() {
+      try {
+        const res = await fetch('images/images.json', { cache: 'no-store' });
+        if (res.ok) {
+          const arr = await res.json();
+          if (Array.isArray(arr) && arr.length) return arr;
+        }
+      } catch (e) { /* ignore */ }
+      return defaultSlides;
+    }
+
+    // ====== Basic helpers ======
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+    const slidesEl = $('#slides');
+    const dotsEl = $('#dots');
+    const thumbsEl = $('#thumbs');
+
+    // Lazy-load images with IntersectionObserver
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const img = e.target;
+          if (!img.src) img.src = img.dataset.src;
+          io.unobserve(img);
+        }
+      });
+    }, { rootMargin: '200px' });
+
+    let i = 0, timer = null, isHover = false, slides = [];
+
+    function update() {
+      slidesEl.style.transform = `translateX(-${i * 100}%)`;
+      $$('.dot', dotsEl).forEach((d, idx) => {
+        d.classList.toggle('active', idx === i);
+        if (idx === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+      });
+    }
+
+    function go(n) { i = (n + slides.length) % slides.length; update(); reset(); }
+    function next() { go(i + 1); }
+    function prev() { go(i - 1); }
+
+    // Autoplay (respect reduced motion)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function start() { if (!prefersReduced && !isHover && slides.length > 1) timer = setInterval(next, 5000); }
+    function stop() { if (timer) clearInterval(timer); }
+    function reset() { stop(); start(); }
+
+    // Keyboard
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    // Hover pause
+    $('#slider').addEventListener('mouseenter', () => { isHover = true; stop(); });
+    $('#slider').addEventListener('mouseleave', () => { isHover = false; start(); });
+
+    // Touch swipe
+    let x0 = null;
+    slidesEl.addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+    slidesEl.addEventListener('touchend', e => {
+      if (x0 == null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+      x0 = null;
+    }, { passive: true });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const header = document.querySelector('header');
+    menuBtn.addEventListener('click', () => {
+      header.classList.toggle('mobile-open');
+    });
+
+    // Year footer
+    $('#y').textContent = new Date().getFullYear();
+
+    // ====== Init: build slides from list or JSON manifest ======
+    (async () => {
+      slides = await loadSlides();
+      if (!Array.isArray(slides)) slides = [];
+
+      if (!slides.length) {
+        $('#slider').insertAdjacentHTML('beforeend', "<div style='padding:16px;text-align:center;color:#c6d3e1'>Add your image paths to <code>defaultSlides</code> in index.html or create <code>/images/images.json</code>.</div>");
+        return;
+      }
+
+      // Build markup
+      slides.forEach((src, idx) => {
+        const li = document.createElement('li');
+        li.className = 'slide';
+        const img = document.createElement('img');
+        img.alt = `Pool project ${idx + 1}`;
+        img.loading = 'lazy';
+        img.dataset.src = src; // lazy via IO
+        li.appendChild(img);
+        slidesEl.appendChild(li);
+
+        // dots
+        const dot = document.createElement('button');
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+        dot.addEventListener('click', () => go(idx));
+        dotsEl.appendChild(dot);
+
+        // thumbs
+        const th = document.createElement('img');
+        th.alt = `Thumbnail ${idx + 1}`;
+        th.loading = 'lazy';
+        th.dataset.src = src;
+        th.addEventListener('click', () => go(idx));
+        thumbsEl.appendChild(th);
+      });
+
+      $$('img', slidesEl).forEach(img => io.observe(img));
+      $$('img', thumbsEl).forEach(img => io.observe(img));
+
+      update();
+      start();
+    })();
+  </script>
+
+  <!--
+  ================== OPTIONAL: netlify.toml (create as a separate file at your project root) ==================
+
+  [build]
+    publish = "."  # directory with index.html
+
+  [[headers]]
+    for = "/images/*"
+    [headers.values]
+      Cache-Control = "public, max-age=31536000, immutable"
+
+  [[headers]]
+    for = "/*"
+    [headers.values]
+      X-Frame-Options = "SAMEORIGIN"
+      X-Content-Type-Options = "nosniff"
+      Referrer-Policy = "strict-origin-when-cross-origin"
+      Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+  # If you later add a /thank-you.html for form submissions, you can set redirects here.
+  # [[redirects]]
+  #   from = "/contact-success"
+  #   to = "/thank-you.html"
+  #   status = 301
+  -->
+</body>
+</html>
