@@ -16,6 +16,7 @@
 
   <!-- Optional: preload a hero image you add to /images/hero.jpg -->
   <link rel="preload" as="image" href="images/hero.jpg" />
+  <link rel="preload" as="image" href="logo/logo_banner.png" />
   <link rel="icon" href="/favicon.ico" />
 
   <style>
@@ -47,7 +48,7 @@
     header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); background: rgba(12,19,43,.6); border-bottom: 1px solid rgba(255,255,255,.06); }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
-    .brand-logo { width: 36px; height: 36px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #57cbf5, #0e6aa6); box-shadow: inset 0 0 20px rgba(255,255,255,.25); }
+    .brand-logo { height: 36px; width: auto; display: block; border-radius: 6px; }
     .nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-weight: 600; }
     .nav a:hover { color: #fff; }
     .menu-btn { display: none; background: transparent; border: 1px solid rgba(255,255,255,.2); color: var(--text); padding: 8px 10px; border-radius: 10px; }
@@ -129,7 +130,7 @@
   <header>
     <div class="wrap nav">
       <div class="brand" aria-label="Designer Pools by Garry Bair LLC">
-        <div class="brand-logo" aria-hidden="true"></div>
+        <img class="brand-logo" src="logo/logo_banner.png" alt="Designer Pools by Garry Bair LLC logo" />
         <span>Designer Pools by Garry Bair LLC</span>
       </div>
       <nav class="links" aria-label="Main">
