@@ -1,0 +1,7 @@
+{
+  "name": "pool-site",
+  "private": true,
+  "scripts": {
+    "build": "node gen-images-manifest.mjs"
+  }
+}
