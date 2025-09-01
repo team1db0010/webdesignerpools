@@ -293,8 +293,8 @@
     }
 
     .slide.active .slide-content {
-      opacity: 1;
-      visibility: visible;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
 
     .slide img {
@@ -314,8 +314,9 @@
       text-align: center;
       z-index: 3;
       pointer-events: none;
-      opacity: 1;
-      visibility: visible;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
     }
 
     .slide-title {
@@ -1017,15 +1018,27 @@
         dotsContainer.appendChild(dot);
       });
       
-      // Ensure first slide is properly visible and others are hidden
-      const slides = slideshow.querySelectorAll('.slide');
-      slides.forEach((slide, index) => {
-        if (index === 0) {
-          slide.classList.add('active');
-        } else {
-          slide.classList.remove('active');
-        }
-      });
+             // Ensure first slide is properly visible and others are hidden
+       const slides = slideshow.querySelectorAll('.slide');
+       slides.forEach((slide, index) => {
+         if (index === 0) {
+           slide.classList.add('active');
+           // Ensure first slide content is visible
+           const slideContent = slide.querySelector('.slide-content');
+           if (slideContent) {
+             slideContent.style.opacity = '1';
+             slideContent.style.visibility = 'visible';
+           }
+         } else {
+           slide.classList.remove('active');
+           // Ensure other slide content is hidden
+           const slideContent = slide.querySelector('.slide-content');
+           if (slideContent) {
+             slideContent.style.opacity = '0';
+             slideContent.style.visibility = 'hidden';
+           }
+         }
+       });
       
       // Start slideshow after a short delay to ensure everything is ready
       setTimeout(() => {
@@ -1033,38 +1046,50 @@
       }, 1000);
     }
 
-    function goToSlide(index) {
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dot');
-      
-      // Ensure we have valid slides
-      if (slides.length === 0 || index < 0 || index >= slides.length) {
-        return;
-      }
-      
-      // If clicking the same slide, do nothing
-      if (currentSlide === index) {
-        return;
-      }
-      
-      // Remove active class from current slide and dot
-      if (slides[currentSlide]) {
-        slides[currentSlide].classList.remove('active');
-      }
-      if (dots[currentSlide]) {
-        dots[currentSlide].classList.remove('active');
-      }
-      
-      currentSlide = index;
-      
-      // Add active class to new slide and dot
-      if (slides[currentSlide]) {
-        slides[currentSlide].classList.add('active');
-      }
-      if (dots[currentSlide]) {
-        dots[currentSlide].classList.add('active');
-      }
-    }
+         function goToSlide(index) {
+       const slides = document.querySelectorAll('.slide');
+       const dots = document.querySelectorAll('.dot');
+       
+       // Ensure we have valid slides
+       if (slides.length === 0 || index < 0 || index >= slides.length) {
+         return;
+       }
+       
+       // If clicking the same slide, do nothing
+       if (currentSlide === index) {
+         return;
+       }
+       
+       // Remove active class from current slide and dot
+       if (slides[currentSlide]) {
+         slides[currentSlide].classList.remove('active');
+         // Ensure slide content is hidden for non-active slides
+         const slideContent = slides[currentSlide].querySelector('.slide-content');
+         if (slideContent) {
+           slideContent.style.opacity = '0';
+           slideContent.style.visibility = 'hidden';
+         }
+       }
+       if (dots[currentSlide]) {
+         dots[currentSlide].classList.remove('active');
+       }
+       
+       currentSlide = index;
+       
+       // Add active class to new slide and dot
+       if (slides[currentSlide]) {
+         slides[currentSlide].classList.add('active');
+         // Ensure slide content is visible for active slide
+         const slideContent = slides[currentSlide].querySelector('.slide-content');
+         if (slideContent) {
+           slideContent.style.opacity = '1';
+           slideContent.style.visibility = 'visible';
+         }
+       }
+       if (dots[currentSlide]) {
+         dots[currentSlide].classList.add('active');
+       }
+     }
 
     function nextSlide() {
       const next = (currentSlide + 1) % poolImages.length;
