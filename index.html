@@ -314,6 +314,8 @@
       text-align: center;
       z-index: 3;
       pointer-events: none;
+      opacity: 1;
+      visibility: visible;
     }
 
     .slide-title {
@@ -336,27 +338,31 @@
       justify-content: space-between;
       padding: 0 20px;
       pointer-events: none;
+      z-index: 10;
     }
 
     .control-btn {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 2rem;
       color: var(--dark);
       transition: all 0.3s ease;
       pointer-events: auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      font-weight: bold;
     }
 
     .control-btn:hover {
       background: var(--white);
       transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
     .slideshow-dots {
@@ -726,10 +732,10 @@
           <!-- Slides will be populated by JavaScript -->
         </div>
         
-        <div class="slideshow-controls">
-          <button class="control-btn" id="prevBtn">‹</button>
-          <button class="control-btn" id="nextBtn">›</button>
-        </div>
+                 <div class="slideshow-controls">
+           <button class="control-btn" id="prevBtn" title="Previous slide">‹</button>
+           <button class="control-btn" id="nextBtn" title="Next slide">›</button>
+         </div>
         
         <div class="slideshow-dots" id="dots">
           <!-- Dots will be populated by JavaScript -->
@@ -1071,14 +1077,14 @@
       goToSlide(prev);
     }
 
-    function startSlideshow() {
-      // Clear any existing interval
-      if (slideInterval) {
-        clearInterval(slideInterval);
-      }
-      slideInterval = setInterval(nextSlide, 5000);
-      console.log('Slideshow started - will change every 5 seconds');
-    }
+         function startSlideshow() {
+       // Clear any existing interval
+       if (slideInterval) {
+         clearInterval(slideInterval);
+       }
+       slideInterval = setInterval(nextSlide, 3000);
+       console.log('Slideshow started - will change every 3 seconds');
+     }
 
     function stopSlideshow() {
       clearInterval(slideInterval);
