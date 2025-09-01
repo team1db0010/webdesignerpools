@@ -40,9 +40,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; font-size: 16px; }
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
@@ -115,7 +113,7 @@
     }
     .slide.active { opacity: 1; z-index: 2; }
 
-    /* Overlay text is hidden by default; we only show it on last slide via JS */
+    /* Overlay (hidden by default—shown only on last slide) */
     .slide-content {
       position: absolute; left: 0; right: 0; bottom: 0;
       background: linear-gradient(transparent, rgba(0,0,0,0.8));
@@ -147,7 +145,7 @@
     .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(0,0,0,0.3); cursor: pointer; transition: all 0.3s ease; }
     .dot.active { background: var(--primary); transform: scale(1.2); }
 
-    /* Services, About, Contact & Footer (unchanged) */
+    /* Services, About, Contact & Footer */
     .services-section { padding: 80px 0; background: var(--white); }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
     .service-card { background: var(--white); border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; box-shadow: var(--shadow); transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.1); }
@@ -185,7 +183,7 @@
     .footer-links a:hover { opacity: 1; }
     .footer-bottom { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.7; }
 
-    /* Responsive Design */
+    /* Responsive */
     @media (max-width: 768px) {
       .nav { display: none; }
       .mobile-menu-btn { display: block; }
@@ -233,7 +231,7 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
     <div class="container">
       <div class="hero-content fade-in-up">
@@ -247,7 +245,7 @@
     </div>
   </section>
 
-  <!-- Slideshow Section -->
+  <!-- Slideshow -->
   <section id="gallery" class="slideshow-section">
     <div class="container">
       <div class="section-header">
@@ -256,19 +254,19 @@
       </div>
 
       <div class="slideshow-container">
-        <div class="slideshow" id="slideshow"><!-- slides injected by JS --></div>
+        <div class="slideshow" id="slideshow"></div>
 
         <div class="slideshow-controls">
           <button class="control-btn" id="prevBtn" title="Previous slide">◀</button>
           <button class="control-btn" id="nextBtn" title="Next slide">▶</button>
         </div>
 
-        <div class="slideshow-dots" id="dots"><!-- dots injected by JS --></div>
+        <div class="slideshow-dots" id="dots"></div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
+  <!-- Services -->
   <section id="services" class="services-section">
     <div class="container">
       <div class="section-header">
@@ -277,41 +275,17 @@
       </div>
 
       <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🏊</div>
-          <h3>Custom Pool Design</h3>
-          <p>Personalized pool designs that match your lifestyle, backyard space, and budget. From classic rectangles to freeform masterpieces.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🔨</div>
-          <h3>Pool Construction</h3>
-          <p>Expert construction using premium materials and proven techniques. Shotcrete, tile, coping, and equipment packages tailored to your needs.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🔄</div>
-          <h3>Pool Renovation</h3>
-          <p>Transform your existing pool with resurfacing, tile replacement, plumbing upgrades, LED lighting, and automation systems.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">⚙️</div>
-          <h3>Equipment & Service</h3>
-          <p>Professional installation of heaters, pumps, filters, salt systems, and seasonal openings/closings to keep your pool perfect year-round.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🎨</div>
-          <h3>Landscaping</h3>
-          <p>Complete outdoor living spaces with decking, patios, landscaping, and hardscaping to complement your new pool.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🛡️</div>
-          <h3>Warranty & Support</h3>
-          <p>Comprehensive warranties and ongoing support to ensure your investment is protected and your pool stays beautiful for years.</p>
-        </div>
+        <div class="service-card"><div class="service-icon">🏊</div><h3>Custom Pool Design</h3><p>Personalized pool designs that match your lifestyle, backyard space, and budget. From classic rectangles to freeform masterpieces.</p></div>
+        <div class="service-card"><div class="service-icon">🔨</div><h3>Pool Construction</h3><p>Expert construction using premium materials and proven techniques. Shotcrete, tile, coping, and equipment packages tailored to your needs.</p></div>
+        <div class="service-card"><div class="service-icon">🔄</div><h3>Pool Renovation</h3><p>Transform your existing pool with resurfacing, tile replacement, plumbing upgrades, LED lighting, and automation systems.</p></div>
+        <div class="service-card"><div class="service-icon">⚙️</div><h3>Equipment & Service</h3><p>Professional installation of heaters, pumps, filters, salt systems, and seasonal openings/closings to keep your pool perfect year-round.</p></div>
+        <div class="service-card"><div class="service-icon">🎨</div><h3>Landscaping</h3><p>Complete outdoor living spaces with decking, patios, landscaping, and hardscaping to complement your new pool.</p></div>
+        <div class="service-card"><div class="service-icon">🛡️</div><h3>Warranty & Support</h3><p>Comprehensive warranties and ongoing support to ensure your investment is protected and your pool stays beautiful for years.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section id="about" class="about-section">
     <div class="container">
       <div class="section-header">
@@ -328,7 +302,7 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section id="contact" class="contact-section">
     <div class="container">
       <div class="section-header">
@@ -342,39 +316,18 @@
           <p>Contact us today to schedule your free consultation and get started on your custom pool project.</p>
 
           <div class="contact-details">
-            <div class="contact-item">
-              <div class="contact-icon">📞</div>
-              <div><strong>Phone:</strong><br><a href="tel:+1-816-555-0123">(816) 555-0123</a></div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">✉️</div>
-              <div><strong>Email:</strong><br><a href="mailto:info@designerpoolskc.com">info@designerpoolskc.com</a></div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">📍</div>
-              <div><strong>Service Area:</strong><br>Kansas City Metro Area<br>Missouri & Kansas</div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">⏰</div>
-              <div><strong>Hours:</strong><br>Mon-Fri: 8AM-6PM<br>Sat: 9AM-4PM</div>
-            </div>
+            <div class="contact-item"><div class="contact-icon">📞</div><div><strong>Phone:</strong><br><a href="tel:+1-816-555-0123">(816) 555-0123</a></div></div>
+            <div class="contact-item"><div class="contact-icon">✉️</div><div><strong>Email:</strong><br><a href="mailto:info@designerpoolskc.com">info@designerpoolskc.com</a></div></div>
+            <div class="contact-item"><div class="contact-icon">📍</div><div><strong>Service Area:</strong><br>Kansas City Metro Area<br>Missouri & Kansas</div></div>
+            <div class="contact-item"><div class="contact-icon">⏰</div><div><strong>Hours:</strong><br>Mon-Fri: 8AM-6PM<br>Sat: 9AM-4PM</div></div>
           </div>
         </div>
 
         <div class="contact-form">
           <form id="contactForm">
-            <div class="form-group">
-              <label for="name">Full Name *</label>
-              <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone">
-            </div>
+            <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" required></div>
+            <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" required></div>
+            <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone"></div>
             <div class="form-group">
               <label for="service">Service Interest</label>
               <select id="service" name="service">
@@ -386,10 +339,7 @@
                 <option value="other">Other</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="message">Project Details *</label>
-              <textarea id="message" name="message" placeholder="Tell us about your dream pool project..." required></textarea>
-            </div>
+            <div class="form-group"><label for="message">Project Details *</label><textarea id="message" name="message" placeholder="Tell us about your dream pool project..." required></textarea></div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">
               <span id="submitText">Send Message</span>
               <span id="submitLoading" class="loading" style="display: none;"></span>
@@ -434,22 +384,27 @@
       { src: 'images/IMG_5391.jpg', title: 'Premium Pool Features', description: 'LED lighting and advanced automation' },
       { src: 'images/IMG_5392.jpg', title: 'Outdoor Living Space', description: 'Complete outdoor entertainment area' }
     ];
-
-    // Slideshow state
-    let currentSlide = 0;
-    let slideInterval = null;
-    let textTimeout = null;
     const LAST_INDEX = poolImages.length - 1;
 
-    function initSlideshow() {
-      const slideshow = document.getElementById('slideshow');
-      const dotsContainer = document.getElementById('dots');
-      if (!slideshow || !dotsContainer) return;
+    // State
+    let currentSlide = 0;
+    let autoTimer = null;
+    let overlayTimer = null;
+
+    // Helpers
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+    const clearTimers = () => { if (autoTimer) clearTimeout(autoTimer); if (overlayTimer) clearTimeout(overlayTimer); autoTimer = overlayTimer = null; };
+    const hideAllOverlays = () => $$('.slide-content').forEach(el => el.classList.remove('show'));
+
+    function buildSlides() {
+      const slideshow = $('#slideshow');
+      const dots = $('#dots');
+      if (!slideshow || !dots) return;
 
       slideshow.innerHTML = '';
-      dotsContainer.innerHTML = '';
+      dots.innerHTML = '';
 
-      // Build slides + dots
       poolImages.forEach((img, i) => {
         const slide = document.createElement('div');
         slide.className = `slide ${i === 0 ? 'active' : ''}`;
@@ -464,116 +419,82 @@
         const dot = document.createElement('div');
         dot.className = `dot ${i === 0 ? 'active' : ''}`;
         dot.addEventListener('click', () => {
-          stopSlideshow();
-          clearTextTimeout();
+          clearTimers();
           goToSlide(i);
-          startSlideshow();
         });
-        dotsContainer.appendChild(dot);
+        dots.appendChild(dot);
       });
-
-      startSlideshow();
     }
 
-    function clearTextTimeout() {
-      if (textTimeout) { clearTimeout(textTimeout); textTimeout = null; }
-    }
+    function setActive(index) {
+      const slides = $$('.slide');
+      slides.forEach(s => s.classList.remove('active'));
+      slides[index]?.classList.add('active');
 
-    function stopSlideshow() {
-      if (slideInterval) { clearInterval(slideInterval); slideInterval = null; }
-    }
-
-    function startSlideshow() {
-      stopSlideshow();
-      slideInterval = setInterval(nextSlide, 3000);
-    }
-
-    function setDotActive(index) {
-      const dots = document.querySelectorAll('.dot');
+      const dots = $$('.dot');
       dots.forEach(d => d.classList.remove('active'));
-      if (dots[index]) dots[index].classList.add('active');
+      dots[index]?.classList.add('active');
     }
 
-    function hideAllOverlays() {
-      document.querySelectorAll('.slide-content').forEach(el => el.classList.remove('show'));
+    function scheduleAdvance() {
+      clearTimers();
+      if (currentSlide === LAST_INDEX) {
+        // Show overlay for 10s on last slide, then jump to first
+        const overlay = $$('.slide')[currentSlide]?.querySelector('.slide-content');
+        if (overlay) overlay.classList.add('show');
+        overlayTimer = setTimeout(() => {
+          overlay?.classList.remove('show');
+          goToSlide(0);
+        }, 10000);
+      } else {
+        autoTimer = setTimeout(() => goToSlide(currentSlide + 1), 3000);
+      }
     }
 
     function goToSlide(index) {
-      const slides = document.querySelectorAll('.slide');
+      const slides = $$('.slide');
       if (!slides.length) return;
-      if (index < 0 || index >= slides.length) return;
+      if (index < 0) index = 0;
+      if (index > LAST_INDEX) index = LAST_INDEX;
 
       hideAllOverlays();
-      clearTextTimeout();
-
-      // Swap active
-      slides[currentSlide]?.classList.remove('active');
+      setActive(index);
       currentSlide = index;
-      slides[currentSlide]?.classList.add('active');
-      setDotActive(currentSlide);
+      scheduleAdvance();
+    }
 
-      // If last slide: pause, show overlay for 10s, then jump to first and resume
+    function next() {
+      clearTimers();
       if (currentSlide === LAST_INDEX) {
-        stopSlideshow(); // pause auto-advance immediately
-        const overlay = slides[currentSlide].querySelector('.slide-content');
-        if (overlay) overlay.classList.add('show');
-
-        textTimeout = setTimeout(() => {
-          overlay?.classList.remove('show');
-          goToSlide(0);
-          startSlideshow();
-        }, 10000); // 10 seconds visible
-      }
-    }
-
-    function nextSlide() {
-      if (currentSlide === LAST_INDEX) {
-        // Safety: if the timer hasn't triggered yet, do nothing (we pause on last slide)
-        return;
-      }
-      goToSlide((currentSlide + 1) % poolImages.length);
-    }
-
-    function prevSlide() {
-      const idx = (currentSlide - 1 + poolImages.length) % poolImages.length;
-      goToSlide(idx);
-    }
-
-    // DOM Ready
-    document.addEventListener('DOMContentLoaded', () => {
-      const nextBtn = document.getElementById('nextBtn');
-      const prevBtn = document.getElementById('prevBtn');
-
-      nextBtn?.addEventListener('click', () => {
-        stopSlideshow();
-        clearTextTimeout();
-        // If currently on last slide (overlay might be showing), move to first
-        if (currentSlide === LAST_INDEX) {
-          hideAllOverlays();
-          goToSlide(0);
-        } else {
-          nextSlide();
-        }
-        startSlideshow();
-      });
-
-      prevBtn?.addEventListener('click', () => {
-        stopSlideshow();
-        clearTextTimeout();
+        // If user hits next on last, jump to first immediately
         hideAllOverlays();
-        prevSlide();
-        startSlideshow();
-      });
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+    function prev() {
+      clearTimers();
+      hideAllOverlays();
+      goToSlide((currentSlide - 1 + poolImages.length) % poolImages.length);
+    }
 
-      initSlideshow();
+    document.addEventListener('DOMContentLoaded', () => {
+      buildSlides();
+      // Start at 0 and begin auto advance
+      goToSlide(0);
 
-      // Mobile menu toggle
-      document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+      // Controls
+      $('#nextBtn')?.addEventListener('click', next);
+      $('#prevBtn')?.addEventListener('click', prev);
+
+      // Mobile menu
+      $('#mobileMenuBtn')?.addEventListener('click', () => {
         const nav = document.querySelector('.nav');
         nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
       });
 
-      // Smooth scrolling for nav links
+      // Smooth scrolling
       document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
           e.preventDefault();
@@ -582,11 +503,11 @@
         });
       });
 
-      // Contact form (demo)
-      document.getElementById('contactForm').addEventListener('submit', function(e) {
+      // Contact form demo
+      $('#contactForm')?.addEventListener('submit', function(e) {
         e.preventDefault();
-        const submitText = document.getElementById('submitText');
-        const submitLoading = document.getElementById('submitLoading');
+        const submitText = $('#submitText');
+        const submitLoading = $('#submitLoading');
         submitText.style.display = 'none';
         submitLoading.style.display = 'inline-block';
         setTimeout(() => {
@@ -613,10 +534,10 @@
       document.getElementById('currentYear').textContent = new Date().getFullYear();
 
       // Fade-in observer
-      const observer = new IntersectionObserver(entries => {
+      const io = new IntersectionObserver(entries => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('fade-in-up'); });
       }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-      document.querySelectorAll('.service-card, .section-header, .about-content').forEach(el => observer.observe(el));
+      document.querySelectorAll('.service-card, .section-header, .about-content').forEach(el => io.observe(el));
     });
   </script>
 </body>
