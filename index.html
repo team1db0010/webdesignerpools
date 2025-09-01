@@ -303,14 +303,13 @@
       text-align: center;
       z-index: 3;
       pointer-events: none;
-      opacity: 0;
-      visibility: hidden;
-      transition: none;
-    }
-
-    .slide.active .slide-content {
       opacity: 1;
       visibility: visible;
+    }
+
+    .slide:not(.active) .slide-content {
+      opacity: 0;
+      visibility: hidden;
     }
 
     .slide img {
@@ -362,6 +361,7 @@
       font-weight: bold;
       text-shadow: 0 2px 4px rgba(0,0,0,0.2);
       z-index: 1001;
+      position: relative;
     }
 
     .control-btn:hover {
@@ -739,8 +739,8 @@
         </div>
         
                  <div class="slideshow-controls">
-           <button class="control-btn" id="prevBtn" title="Previous slide">◀</button>
-           <button class="control-btn" id="nextBtn" title="Next slide">▶</button>
+           <button class="control-btn" id="prevBtn" title="Previous slide" style="display: flex !important; visibility: visible !important;">◀</button>
+           <button class="control-btn" id="nextBtn" title="Next slide" style="display: flex !important; visibility: visible !important;">▶</button>
          </div>
         
         <div class="slideshow-dots" id="dots">
@@ -1028,8 +1028,20 @@
        slides.forEach((slide, index) => {
          if (index === 0) {
            slide.classList.add('active');
+           // Force first slide content to be visible
+           const slideContent = slide.querySelector('.slide-content');
+           if (slideContent) {
+             slideContent.style.opacity = '1';
+             slideContent.style.visibility = 'visible';
+           }
          } else {
            slide.classList.remove('active');
+           // Ensure other slide content is hidden
+           const slideContent = slide.querySelector('.slide-content');
+           if (slideContent) {
+             slideContent.style.opacity = '0';
+             slideContent.style.visibility = 'hidden';
+           }
          }
        });
       
@@ -1068,6 +1080,18 @@
        if (dots[currentSlide]) {
          dots[currentSlide].classList.add('active');
        }
+       
+       // Force text overlay visibility
+       setTimeout(() => {
+         const activeSlide = slides[currentSlide];
+         if (activeSlide) {
+           const slideContent = activeSlide.querySelector('.slide-content');
+           if (slideContent) {
+             slideContent.style.opacity = '1';
+             slideContent.style.visibility = 'visible';
+           }
+         }
+       }, 100);
      }
 
     function nextSlide() {
