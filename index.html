@@ -279,7 +279,8 @@
       height: 100%;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 1;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -288,6 +289,7 @@
     .slide.active {
       opacity: 1;
       visibility: visible;
+      z-index: 2;
     }
 
     .slide img {
@@ -981,11 +983,6 @@
         const slide = document.createElement('div');
         slide.className = `slide ${index === 0 ? 'active' : ''}`;
         
-        // Preload image to ensure it's ready
-        const img = new Image();
-        img.src = image.src;
-        img.alt = image.title;
-        
         slide.innerHTML = `
           <img src="${image.src}" alt="${image.title}" loading="eager">
           <div class="slide-content">
@@ -1002,12 +999,16 @@
         dotsContainer.appendChild(dot);
       });
       
-      // Ensure first slide is properly visible
+      // Ensure first slide is properly visible and others are hidden
       setTimeout(() => {
-        const firstSlide = slideshow.querySelector('.slide');
-        if (firstSlide) {
-          firstSlide.classList.add('active');
-        }
+        const slides = slideshow.querySelectorAll('.slide');
+        slides.forEach((slide, index) => {
+          if (index === 0) {
+            slide.classList.add('active');
+          } else {
+            slide.classList.remove('active');
+          }
+        });
       }, 100);
       
       startSlideshow();
@@ -1019,6 +1020,11 @@
       
       // Ensure we have valid slides
       if (slides.length === 0 || index < 0 || index >= slides.length) {
+        return;
+      }
+      
+      // If clicking the same slide, do nothing
+      if (currentSlide === index) {
         return;
       }
       
