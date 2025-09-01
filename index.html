@@ -974,6 +974,11 @@
       const slideshow = document.getElementById('slideshow');
       const dotsContainer = document.getElementById('dots');
       
+      if (!slideshow || !dotsContainer) {
+        console.error('Slideshow elements not found');
+        return;
+      }
+      
       // Clear any existing content
       slideshow.innerHTML = '';
       dotsContainer.innerHTML = '';
@@ -1000,18 +1005,19 @@
       });
       
       // Ensure first slide is properly visible and others are hidden
-      setTimeout(() => {
-        const slides = slideshow.querySelectorAll('.slide');
-        slides.forEach((slide, index) => {
-          if (index === 0) {
-            slide.classList.add('active');
-          } else {
-            slide.classList.remove('active');
-          }
-        });
-      }, 100);
+      const slides = slideshow.querySelectorAll('.slide');
+      slides.forEach((slide, index) => {
+        if (index === 0) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
       
-      startSlideshow();
+      // Start slideshow after a short delay to ensure everything is ready
+      setTimeout(() => {
+        startSlideshow();
+      }, 1000);
     }
 
     function goToSlide(index) {
@@ -1049,6 +1055,7 @@
 
     function nextSlide() {
       const next = (currentSlide + 1) % poolImages.length;
+      console.log(`Moving from slide ${currentSlide} to slide ${next}`);
       goToSlide(next);
     }
 
@@ -1058,7 +1065,12 @@
     }
 
     function startSlideshow() {
+      // Clear any existing interval
+      if (slideInterval) {
+        clearInterval(slideInterval);
+      }
       slideInterval = setInterval(nextSlide, 5000);
+      console.log('Slideshow started - will change every 5 seconds');
     }
 
     function stopSlideshow() {
@@ -1066,21 +1078,41 @@
     }
 
     // Event listeners
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      nextSlide();
-      stopSlideshow();
-      startSlideshow();
+    document.addEventListener('DOMContentLoaded', function() {
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const slideshow = document.getElementById('slideshow');
+      
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          console.log('Next button clicked');
+          nextSlide();
+          stopSlideshow();
+          startSlideshow();
+        });
+      }
+      
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          console.log('Previous button clicked');
+          prevSlide();
+          stopSlideshow();
+          startSlideshow();
+        });
+      }
+      
+      if (slideshow) {
+        // Pause slideshow on hover
+        slideshow.addEventListener('mouseenter', () => {
+          console.log('Slideshow paused on hover');
+          stopSlideshow();
+        });
+        slideshow.addEventListener('mouseleave', () => {
+          console.log('Slideshow resumed after hover');
+          startSlideshow();
+        });
+      }
     });
-
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      prevSlide();
-      stopSlideshow();
-      startSlideshow();
-    });
-
-    // Pause slideshow on hover
-    document.getElementById('slideshow').addEventListener('mouseenter', stopSlideshow);
-    document.getElementById('slideshow').addEventListener('mouseleave', startSlideshow);
 
     // Mobile menu toggle
     document.getElementById('mobileMenuBtn').addEventListener('click', function() {
@@ -1139,10 +1171,8 @@
 
     // Initialize slideshow when page loads
     document.addEventListener('DOMContentLoaded', function() {
-      // Wait a bit for images to load, then initialize slideshow
-      setTimeout(() => {
-        initSlideshow();
-      }, 500);
+      // Initialize slideshow immediately
+      initSlideshow();
       
       // Add fade-in animation to elements when they come into view
       const observerOptions = {
