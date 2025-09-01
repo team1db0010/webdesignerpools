@@ -292,22 +292,6 @@
       z-index: 2;
     }
 
-    .slide:not(.active) .slide-content {
-      opacity: 0 !important;
-      visibility: hidden !important;
-    }
-
-    .slide.active .slide-content {
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     .slide-content {
       position: absolute;
       bottom: 0;
@@ -321,8 +305,21 @@
       pointer-events: none;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transition: none;
     }
+
+    .slide.active .slide-content {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
 
     .slide-title {
       font-size: 1.5rem;
@@ -344,7 +341,7 @@
       justify-content: space-between;
       padding: 0 30px;
       pointer-events: none;
-      z-index: 100;
+      z-index: 1000;
     }
 
     .control-btn {
@@ -354,7 +351,7 @@
       background: rgba(255,255,255,0.95);
       border: 4px solid rgba(255,255,255,0.8);
       cursor: pointer;
-      display: flex;
+      display: flex !important;
       align-items: center;
       justify-content: center;
       font-size: 3rem;
@@ -364,7 +361,7 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.5);
       font-weight: bold;
       text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      z-index: 101;
+      z-index: 1001;
     }
 
     .control-btn:hover {
@@ -742,8 +739,8 @@
         </div>
         
                  <div class="slideshow-controls">
-           <button class="control-btn" id="prevBtn" title="Previous slide" style="display: flex !important;">◀</button>
-           <button class="control-btn" id="nextBtn" title="Next slide" style="display: flex !important;">▶</button>
+           <button class="control-btn" id="prevBtn" title="Previous slide">◀</button>
+           <button class="control-btn" id="nextBtn" title="Next slide">▶</button>
          </div>
         
         <div class="slideshow-dots" id="dots">
@@ -1031,20 +1028,8 @@
        slides.forEach((slide, index) => {
          if (index === 0) {
            slide.classList.add('active');
-           // Ensure first slide content is visible
-           const slideContent = slide.querySelector('.slide-content');
-           if (slideContent) {
-             slideContent.style.opacity = '1';
-             slideContent.style.visibility = 'visible';
-           }
          } else {
            slide.classList.remove('active');
-           // Ensure other slide content is hidden
-           const slideContent = slide.querySelector('.slide-content');
-           if (slideContent) {
-             slideContent.style.opacity = '0';
-             slideContent.style.visibility = 'hidden';
-           }
          }
        });
       
@@ -1066,15 +1051,6 @@
          return;
        }
        
-       // Hide all slide content immediately
-       slides.forEach(slide => {
-         const slideContent = slide.querySelector('.slide-content');
-         if (slideContent) {
-           slideContent.style.opacity = '0';
-           slideContent.style.visibility = 'hidden';
-         }
-       });
-       
        // Remove active class from current slide and dot
        if (slides[currentSlide]) {
          slides[currentSlide].classList.remove('active');
@@ -1088,14 +1064,6 @@
        // Add active class to new slide and dot
        if (slides[currentSlide]) {
          slides[currentSlide].classList.add('active');
-         // Show content for active slide after a brief delay
-         setTimeout(() => {
-           const slideContent = slides[currentSlide].querySelector('.slide-content');
-           if (slideContent) {
-             slideContent.style.opacity = '1';
-             slideContent.style.visibility = 'visible';
-           }
-         }, 200);
        }
        if (dots[currentSlide]) {
          dots[currentSlide].classList.add('active');
