@@ -278,7 +278,8 @@
       width: 100%;
       height: 100%;
       opacity: 0;
-      transition: opacity 0.8s ease;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -286,6 +287,7 @@
 
     .slide.active {
       opacity: 1;
+      visibility: visible;
     }
 
     .slide img {
@@ -970,12 +972,22 @@
       const slideshow = document.getElementById('slideshow');
       const dotsContainer = document.getElementById('dots');
       
+      // Clear any existing content
+      slideshow.innerHTML = '';
+      dotsContainer.innerHTML = '';
+      
       // Create slides
       poolImages.forEach((image, index) => {
         const slide = document.createElement('div');
         slide.className = `slide ${index === 0 ? 'active' : ''}`;
+        
+        // Preload image to ensure it's ready
+        const img = new Image();
+        img.src = image.src;
+        img.alt = image.title;
+        
         slide.innerHTML = `
-          <img src="${image.src}" alt="${image.title}">
+          <img src="${image.src}" alt="${image.title}" loading="eager">
           <div class="slide-content">
             <h3 class="slide-title">${image.title}</h3>
             <p class="slide-description">${image.description}</p>
@@ -990,6 +1002,14 @@
         dotsContainer.appendChild(dot);
       });
       
+      // Ensure first slide is properly visible
+      setTimeout(() => {
+        const firstSlide = slideshow.querySelector('.slide');
+        if (firstSlide) {
+          firstSlide.classList.add('active');
+        }
+      }, 100);
+      
       startSlideshow();
     }
 
@@ -997,13 +1017,28 @@
       const slides = document.querySelectorAll('.slide');
       const dots = document.querySelectorAll('.dot');
       
-      slides[currentSlide].classList.remove('active');
-      dots[currentSlide].classList.remove('active');
+      // Ensure we have valid slides
+      if (slides.length === 0 || index < 0 || index >= slides.length) {
+        return;
+      }
+      
+      // Remove active class from current slide and dot
+      if (slides[currentSlide]) {
+        slides[currentSlide].classList.remove('active');
+      }
+      if (dots[currentSlide]) {
+        dots[currentSlide].classList.remove('active');
+      }
       
       currentSlide = index;
       
-      slides[currentSlide].classList.add('active');
-      dots[currentSlide].classList.add('active');
+      // Add active class to new slide and dot
+      if (slides[currentSlide]) {
+        slides[currentSlide].classList.add('active');
+      }
+      if (dots[currentSlide]) {
+        dots[currentSlide].classList.add('active');
+      }
     }
 
     function nextSlide() {
@@ -1098,7 +1133,10 @@
 
     // Initialize slideshow when page loads
     document.addEventListener('DOMContentLoaded', function() {
-      initSlideshow();
+      // Wait a bit for images to load, then initialize slideshow
+      setTimeout(() => {
+        initSlideshow();
+      }, 500);
       
       // Add fade-in animation to elements when they come into view
       const observerOptions = {
