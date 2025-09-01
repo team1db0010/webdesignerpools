@@ -39,16 +39,9 @@
       --gradient-dark: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { 
-      scroll-behavior: smooth; 
-      font-size: 16px; 
-    }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -62,628 +55,160 @@
     section[id] { scroll-margin-top: 100px; }
 
     /* Container */
-    .container { 
-      max-width: 1200px; 
-      margin: 0 auto; 
-      padding: 0 20px; 
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
     /* Header */
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
     }
-
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 80px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .logo img {
-      height: 75px;
-      width: auto;
-    }
-
-    .logo-text {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .nav {
-      display: flex;
-      gap: 30px;
-      list-style: none;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-      transition: color 0.3s ease;
-      position: relative;
-    }
-
-    .nav a:hover {
-      color: var(--primary);
-    }
-
+    .header-content { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+    .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text); }
+    .logo img { height: 75px; width: auto; }
+    .logo-text { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+    .nav { display: flex; gap: 30px; list-style: none; }
+    .nav a { text-decoration: none; color: var(--text); font-weight: 600; transition: color 0.3s ease; position: relative; }
+    .nav a:hover { color: var(--primary); }
     .nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--gradient);
-      transition: width 0.3s ease;
+      content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+      background: var(--gradient); transition: width 0.3s ease;
     }
-
-    .nav a:hover::after {
-      width: 100%;
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text);
-    }
+    .nav a:hover::after { width: 100%; }
+    .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text); }
 
     /* Hero Section */
     .hero {
-      min-height: 100vh;
-      background: var(--gradient-dark);
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+      min-height: 100vh; background: var(--gradient-dark);
+      display: flex; align-items: center; position: relative; overflow: hidden;
     }
-
     .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('images/IMG_0702.jpg') center/cover;
-      opacity: 0.3;
-      z-index: 1;
+      content: ''; position: absolute; inset: 0;
+      background: url('images/IMG_0702.jpg') center/cover; opacity: 0.3; z-index: 1;
     }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: var(--white);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .hero p {
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
-      border-radius: var(--radius);
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .btn-primary {
-      background: var(--gradient);
-      color: var(--white);
-      box-shadow: var(--shadow);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border-color: var(--white);
-    }
-
-    .btn-outline:hover {
-      background: var(--white);
-      color: var(--dark);
-    }
+    .hero-content { position: relative; z-index: 2; text-align: center; color: var(--white); max-width: 800px; margin: 0 auto; }
+    .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
+    .hero p { font-size: clamp(1.1rem, 2vw, 1.3rem); margin-bottom: 2rem; opacity: 0.9; }
+    .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 15px 30px; border-radius: var(--radius); text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; cursor: pointer; font-size: 1rem; }
+    .btn-primary { background: var(--gradient); color: var(--white); box-shadow: var(--shadow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-outline { background: transparent; color: var(--white); border-color: var(--white); }
+    .btn-outline:hover { background: var(--white); color: var(--dark); }
 
     /* Slideshow Section */
-    .slideshow-section {
-      padding: 80px 0;
-      background: var(--light);
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-light);
-      max-width: 600px;
-      margin: 0 auto;
-    }
+    .slideshow-section { padding: 80px 0; background: var(--light); }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--dark); margin-bottom: 1rem; }
+    .section-subtitle { font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
 
     .slideshow-container {
-      position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
+      position: relative; max-width: 1000px; margin: 0 auto;
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);
     }
-
-    .slideshow {
-      position: relative;
-      height: 600px;
-      overflow: hidden;
-    }
-
+    .slideshow { position: relative; height: 600px; overflow: hidden; }
     .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      z-index: 1;
-      transition: opacity 0.5s ease;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      opacity: 0; z-index: 1; transition: opacity 0.5s ease;
     }
+    .slide.active { opacity: 1; z-index: 2; }
 
-    .slide.active {
-      opacity: 1;
-      z-index: 2;
+    /* Overlay text is hidden by default; we only show it on last slide via JS */
+    .slide-content {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: var(--white); padding: 40px 20px 20px; text-align: center;
+      z-index: 3; pointer-events: none;
+      opacity: 0; visibility: hidden; transition: opacity 0.5s ease, visibility 0.5s ease;
     }
+    .slide-content.show { opacity: 1; visibility: visible; }
 
-         .slide-content {
-       position: absolute;
-       bottom: 0;
-       left: 0;
-       right: 0;
-       background: linear-gradient(transparent, rgba(0,0,0,0.8));
-       color: var(--white);
-       padding: 40px 20px 20px;
-       text-align: center;
-       z-index: 3;
-       pointer-events: none;
-       opacity: 0;
-       visibility: hidden;
-       transition: opacity 0.5s ease, visibility 0.5s ease;
-     }
-     
-     .slide-content.show {
-       opacity: 1;
-       visibility: visible;
-     }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .slide-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .slide-description {
-      font-size: 1rem;
-      opacity: 0.9;
-    }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .slide-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .slide-description { font-size: 1rem; opacity: 0.9; }
 
     .slideshow-controls {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 30px;
-      pointer-events: none;
-      z-index: 1000;
+      position: absolute; top: 50%; transform: translateY(-50%); width: 100%;
+      display: flex; justify-content: space-between; padding: 0 30px; pointer-events: none; z-index: 1000;
     }
-
     .control-btn {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.95);
-      border: 4px solid rgba(255,255,255,0.8);
-      cursor: pointer;
-      display: flex !important;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: var(--dark);
-      transition: all 0.3s ease;
-      pointer-events: auto;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-      font-weight: bold;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      z-index: 1001;
-      position: relative;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(255,255,255,0.95); border: 4px solid rgba(255,255,255,0.8);
+      cursor: pointer; display: flex !important; align-items: center; justify-content: center;
+      font-size: 3rem; color: var(--dark); transition: all 0.3s ease; pointer-events: auto;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5); font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      z-index: 1001; position: relative;
     }
+    .control-btn:hover { background: var(--white); transform: scale(1.2); box-shadow: 0 12px 30px rgba(0,0,0,0.6); border-color: rgba(255,255,255,1); }
 
-    .control-btn:hover {
-      background: var(--white);
-      transform: scale(1.2);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-      border-color: rgba(255,255,255,1);
-    }
+    .slideshow-dots { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(0,0,0,0.3); cursor: pointer; transition: all 0.3s ease; }
+    .dot.active { background: var(--primary); transform: scale(1.2); }
 
-    .slideshow-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
+    /* Services, About, Contact & Footer (unchanged) */
+    .services-section { padding: 80px 0; background: var(--white); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+    .service-card { background: var(--white); border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; box-shadow: var(--shadow); transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.1); }
+    .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+    .service-icon { width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; color: var(--white); }
+    .service-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--dark); }
+    .service-card p { color: var(--text-light); line-height: 1.6; }
 
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+    .about-section { padding: 80px 0; background: var(--light); }
+    .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
+    .about-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text); margin-bottom: 1.5rem; }
 
-    .dot.active {
-      background: var(--primary);
-      transform: scale(1.2);
+    .contact-section { padding: 80px 0; background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contact-info h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--dark); }
+    .contact-info p { color: var(--text-light); margin-bottom: 2rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 15px; }
+    .contact-item { display: flex; align-items: center; gap: 15px; }
+    .contact-icon { width: 40px; height: 40px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); }
+    .contact-form { background: var(--light); padding: 40px; border-radius: var(--radius-lg); }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark); }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 15px; border: 2px solid rgba(0,0,0,0.1); border-radius: var(--radius); font-size: 1rem; transition: border-color 0.3s ease;
     }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
 
-    /* Services Section */
-    .services-section {
-      padding: 80px 0;
-      background: var(--white);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
-
-    .service-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 40px 30px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-      border: 1px solid rgba(0,0,0,0.1);
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .service-icon {
-      width: 80px;
-      height: 80px;
-      background: var(--gradient);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 2rem;
-      color: var(--white);
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--dark);
-    }
-
-    .service-card p {
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    /* About Section */
-    .about-section {
-      padding: 80px 0;
-      background: var(--light);
-    }
-
-    .about-content {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .about-content p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-    }
-
-    /* Contact Section */
-    .contact-section {
-      padding: 80px 0;
-      background: var(--white);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .contact-info h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: var(--dark);
-    }
-
-    .contact-info p {
-      color: var(--text-light);
-      margin-bottom: 2rem;
-    }
-
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .contact-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--gradient);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-    }
-
-    .contact-form {
-      background: var(--light);
-      padding: 40px;
-      border-radius: var(--radius-lg);
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: var(--dark);
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 15px;
-      border: 2px solid rgba(0,0,0,0.1);
-      border-radius: var(--radius);
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--dark);
-      color: var(--white);
-      padding: 40px 0 20px;
-      text-align: center;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-logo img {
-      height: 40px;
-      width: auto;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-    }
-
-    .footer-links a {
-      color: var(--white);
-      text-decoration: none;
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      opacity: 1;
-    }
-
-    .footer-bottom {
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      opacity: 0.7;
-    }
+    footer { background: var(--dark); color: var(--white); padding: 40px 0 20px; text-align: center; }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 40px; width: auto; }
+    .footer-links { display: flex; gap: 20px; list-style: none; }
+    .footer-links a { color: var(--white); text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease; }
+    .footer-links a:hover { opacity: 1; }
+    .footer-bottom { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.7; }
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      .nav {
-        display: none;
-      }
-
-      .mobile-menu-btn {
-        display: block;
-      }
-
-      .hero {
-        min-height: 80vh;
-        padding-top: 80px;
-      }
-
-      .slideshow {
-        height: 400px;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-      }
+      .nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .hero { min-height: 80vh; padding-top: 80px; }
+      .slideshow { height: 400px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-content { flex-direction: column; text-align: center; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 300px; text-align: center; }
     }
-
     @media (max-width: 480px) {
-      .container {
-        padding: 0 15px;
-      }
-
-      .service-card {
-        padding: 30px 20px;
-      }
-
-      .contact-form {
-        padding: 30px 20px;
-      }
+      .container { padding: 0 15px; }
+      .service-card { padding: 30px 20px; }
+      .contact-form { padding: 30px 20px; }
     }
 
     /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in-up {
-      animation: fadeInUp 0.8s ease forwards;
-    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in-up { animation: fadeInUp 0.8s ease forwards; }
 
     /* Loading animation */
-    .loading {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255,255,255,.3);
-      border-radius: 50%;
-      border-top-color: #fff;
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -693,7 +218,7 @@
       <div class="header-content">
         <a href="#" class="logo">
           <img src="logo/logo_banner.png" alt="Designer Pools Logo">
-          <span class="logo-text"></span>
+          <span class="logo-text">Designer Pools</span>
         </a>
         <nav>
           <ul class="nav">
@@ -722,27 +247,23 @@
     </div>
   </section>
 
-  <!-- Slideshow Section (renamed id to avoid duplicate with inner slideshow) -->
+  <!-- Slideshow Section -->
   <section id="gallery" class="slideshow-section">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Featured Pool Projects</h2>
         <p class="section-subtitle">Discover our latest custom pool designs and transformations across Kansas City</p>
       </div>
-      
+
       <div class="slideshow-container">
-        <div class="slideshow" id="slideshow">
-          <!-- Slides will be populated by JavaScript -->
-        </div>
-        
+        <div class="slideshow" id="slideshow"><!-- slides injected by JS --></div>
+
         <div class="slideshow-controls">
           <button class="control-btn" id="prevBtn" title="Previous slide">◀</button>
           <button class="control-btn" id="nextBtn" title="Next slide">▶</button>
         </div>
-        
-        <div class="slideshow-dots" id="dots">
-          <!-- Dots will be populated by JavaScript -->
-        </div>
+
+        <div class="slideshow-dots" id="dots"><!-- dots injected by JS --></div>
       </div>
     </div>
   </section>
@@ -754,38 +275,33 @@
         <h2 class="section-title">Our Services</h2>
         <p class="section-subtitle">Comprehensive pool solutions from design to maintenance</p>
       </div>
-      
+
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon">🏊</div>
           <h3>Custom Pool Design</h3>
           <p>Personalized pool designs that match your lifestyle, backyard space, and budget. From classic rectangles to freeform masterpieces.</p>
         </div>
-        
         <div class="service-card">
           <div class="service-icon">🔨</div>
           <h3>Pool Construction</h3>
           <p>Expert construction using premium materials and proven techniques. Shotcrete, tile, coping, and equipment packages tailored to your needs.</p>
         </div>
-        
         <div class="service-card">
           <div class="service-icon">🔄</div>
           <h3>Pool Renovation</h3>
           <p>Transform your existing pool with resurfacing, tile replacement, plumbing upgrades, LED lighting, and automation systems.</p>
         </div>
-        
         <div class="service-card">
           <div class="service-icon">⚙️</div>
           <h3>Equipment & Service</h3>
           <p>Professional installation of heaters, pumps, filters, salt systems, and seasonal openings/closings to keep your pool perfect year-round.</p>
         </div>
-        
         <div class="service-card">
           <div class="service-icon">🎨</div>
           <h3>Landscaping</h3>
           <p>Complete outdoor living spaces with decking, patios, landscaping, and hardscaping to complement your new pool.</p>
         </div>
-        
         <div class="service-card">
           <div class="service-icon">🛡️</div>
           <h3>Warranty & Support</h3>
@@ -802,14 +318,11 @@
         <h2 class="section-title">About Designer Pools</h2>
         <p class="section-subtitle">Three generations of pool building excellence</p>
       </div>
-      
+
       <div class="about-content">
         <p>Designer Pools by Garry Bair, LLC is a family-owned swimming pool construction company with deep roots in the craft. Our story began long before our name—back in the 1970s, when Floyd Bair helped introduce shotcrete techniques to Kansas City and taught the trade to his son, Garry.</p>
-        
         <p>After years of hands-on work as a subcontractor and innovator (including designing the Minitower MT-20 manhole sprayer), Garry founded Designer Pools in 2004 with a simple goal: build pools the right way, with pride in the details.</p>
-        
         <p>Following Garry's unexpected passing in December 2023, Derek Bair—his son and a third-generation pool builder—became managing partner in January 2024. Derek brings 20 years of experience in the pool industry and learned directly from Garry, who passed down everything he knew along with his guiding mantra: "hard work, honesty, and integrity."</p>
-        
         <p>Whether you're envisioning a classic backyard retreat or a fully customized outdoor environment, we approach every job with the same family values that built our reputation: integrity, clear communication, and durable construction that stands up to real-world use.</p>
       </div>
     </div>
@@ -822,66 +335,46 @@
         <h2 class="section-title">Get Your Free Quote</h2>
         <p class="section-subtitle">Ready to transform your backyard? Let's discuss your dream pool project.</p>
       </div>
-      
+
       <div class="contact-grid">
         <div class="contact-info">
           <h3>Let's Build Something Amazing Together</h3>
           <p>Contact us today to schedule your free consultation and get started on your custom pool project.</p>
-          
+
           <div class="contact-details">
             <div class="contact-item">
               <div class="contact-icon">📞</div>
-              <div>
-                <strong>Phone:</strong><br>
-                <a href="tel:+1-816-555-0123">(816) 555-0123</a>
-              </div>
+              <div><strong>Phone:</strong><br><a href="tel:+1-816-555-0123">(816) 555-0123</a></div>
             </div>
-            
             <div class="contact-item">
               <div class="contact-icon">✉️</div>
-              <div>
-                <strong>Email:</strong><br>
-                <a href="mailto:info@designerpoolskc.com">info@designerpoolskc.com</a>
-              </div>
+              <div><strong>Email:</strong><br><a href="mailto:info@designerpoolskc.com">info@designerpoolskc.com</a></div>
             </div>
-            
             <div class="contact-item">
               <div class="contact-icon">📍</div>
-              <div>
-                <strong>Service Area:</strong><br>
-                Kansas City Metro Area<br>
-                Missouri & Kansas
-              </div>
+              <div><strong>Service Area:</strong><br>Kansas City Metro Area<br>Missouri & Kansas</div>
             </div>
-            
             <div class="contact-item">
               <div class="contact-icon">⏰</div>
-              <div>
-                <strong>Hours:</strong><br>
-                Mon-Fri: 8AM-6PM<br>
-                Sat: 9AM-4PM
-              </div>
+              <div><strong>Hours:</strong><br>Mon-Fri: 8AM-6PM<br>Sat: 9AM-4PM</div>
             </div>
           </div>
         </div>
-        
+
         <div class="contact-form">
           <form id="contactForm">
             <div class="form-group">
               <label for="name">Full Name *</label>
               <input type="text" id="name" name="name" required>
             </div>
-            
             <div class="form-group">
               <label for="email">Email Address *</label>
               <input type="email" id="email" name="email" required>
             </div>
-            
             <div class="form-group">
               <label for="phone">Phone Number</label>
               <input type="tel" id="phone" name="phone">
             </div>
-            
             <div class="form-group">
               <label for="service">Service Interest</label>
               <select id="service" name="service">
@@ -893,12 +386,10 @@
                 <option value="other">Other</option>
               </select>
             </div>
-            
             <div class="form-group">
               <label for="message">Project Details *</label>
               <textarea id="message" name="message" placeholder="Tell us about your dream pool project..." required></textarea>
             </div>
-            
             <button type="submit" class="btn btn-primary" style="width: 100%;">
               <span id="submitText">Send Message</span>
               <span id="submitLoading" class="loading" style="display: none;"></span>
@@ -917,7 +408,6 @@
           <img src="logo/logo_banner.png" alt="Designer Pools Logo">
           <span>Designer Pools by Garry Bair LLC</span>
         </div>
-        
         <ul class="footer-links">
           <li><a href="#gallery">Our Work</a></li>
           <li><a href="#services">Services</a></li>
@@ -925,7 +415,6 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
-      
       <div class="footer-bottom">
         <p>&copy; <span id="currentYear"></span> Designer Pools by Garry Bair LLC. All rights reserved. | Kansas City Metro Area</p>
       </div>
@@ -933,313 +422,202 @@
   </footer>
 
   <script>
-    // Pool images for slideshow
+    // Images
     const poolImages = [
-      {
-        src: 'images/IMG_0702.jpg',
-        title: 'Custom Freeform Pool',
-        description: 'Elegant freeform design with natural stone coping'
-      },
-      {
-        src: 'images/IMG_0703.jpg',
-        title: 'Modern Rectangular Pool',
-        description: 'Clean lines and contemporary design'
-      },
-      {
-        src: 'images/IMG_0707.jpg',
-        title: 'Luxury Pool & Spa',
-        description: 'Integrated spa with waterfall features'
-      },
-      {
-        src: 'images/IMG_0708.jpg',
-        title: 'Family Pool Design',
-        description: 'Perfect for family fun and entertainment'
-      },
-      {
-        src: 'images/IMG_0709.jpg',
-        title: 'Resort-Style Pool',
-        description: 'Premium materials and professional finish'
-      },
-      {
-        src: 'images/IMG_5389.jpg',
-        title: 'Custom Pool Renovation',
-        description: 'Complete transformation of existing pool'
-      },
-      {
-        src: 'images/IMG_5390.jpg',
-        title: 'Landscape Integration',
-        description: 'Seamless integration with backyard design'
-      },
-      {
-        src: 'images/IMG_5391.jpg',
-        title: 'Premium Pool Features',
-        description: 'LED lighting and advanced automation'
-      },
-      {
-        src: 'images/IMG_5392.jpg',
-        title: 'Outdoor Living Space',
-        description: 'Complete outdoor entertainment area'
-      }
+      { src: 'images/IMG_0702.jpg', title: 'Custom Freeform Pool', description: 'Elegant freeform design with natural stone coping' },
+      { src: 'images/IMG_0703.jpg', title: 'Modern Rectangular Pool', description: 'Clean lines and contemporary design' },
+      { src: 'images/IMG_0707.jpg', title: 'Luxury Pool & Spa', description: 'Integrated spa with waterfall features' },
+      { src: 'images/IMG_0708.jpg', title: 'Family Pool Design', description: 'Perfect for family fun and entertainment' },
+      { src: 'images/IMG_0709.jpg', title: 'Resort-Style Pool', description: 'Premium materials and professional finish' },
+      { src: 'images/IMG_5389.jpg', title: 'Custom Pool Renovation', description: 'Complete transformation of existing pool' },
+      { src: 'images/IMG_5390.jpg', title: 'Landscape Integration', description: 'Seamless integration with backyard design' },
+      { src: 'images/IMG_5391.jpg', title: 'Premium Pool Features', description: 'LED lighting and advanced automation' },
+      { src: 'images/IMG_5392.jpg', title: 'Outdoor Living Space', description: 'Complete outdoor entertainment area' }
     ];
 
-         // Slideshow functionality
-     let currentSlide = 0;
-     let slideInterval;
-     let textTimeout;
+    // Slideshow state
+    let currentSlide = 0;
+    let slideInterval = null;
+    let textTimeout = null;
+    const LAST_INDEX = poolImages.length - 1;
 
-         function initSlideshow() {
-       console.log('Initializing slideshow...');
-       const slideshow = document.getElementById('slideshow');
-       const dotsContainer = document.getElementById('dots');
-       
-       if (!slideshow || !dotsContainer) {
-         console.error('Slideshow elements not found');
-         return;
-       }
-       
-       console.log('Found slideshow elements, creating slides...');
-       
-       // Clear any existing content
-       slideshow.innerHTML = '';
-       dotsContainer.innerHTML = '';
-       
-       // Create slides
-       poolImages.forEach((image, index) => {
-         const slide = document.createElement('div');
-         slide.className = `slide ${index === 0 ? 'active' : ''}`;
-         
-         slide.innerHTML = `
-           <img src="${image.src}" alt="${image.title}" loading="eager">
-           <div class="slide-content">
-             <h3 class="slide-title">${image.title}</h3>
-             <p class="slide-description">${image.description}</p>
-           </div>
-         `;
-         slideshow.appendChild(slide);
-         
-         // Create dots
-         const dot = document.createElement('div');
-         dot.className = `dot ${index === 0 ? 'active' : ''}`;
-         dot.addEventListener('click', () => goToSlide(index));
-         dotsContainer.appendChild(dot);
-       });
-       
-       console.log(`Created ${poolImages.length} slides, starting slideshow in 1 second...`);
-       
-       // Start slideshow after a short delay
-       setTimeout(() => {
-         startSlideshow();
-       }, 1000);
-     }
+    function initSlideshow() {
+      const slideshow = document.getElementById('slideshow');
+      const dotsContainer = document.getElementById('dots');
+      if (!slideshow || !dotsContainer) return;
 
-         function goToSlide(index) {
-       const slides = document.querySelectorAll('.slide');
-       const dots = document.querySelectorAll('.dot');
-       
-       // Ensure we have valid slides
-       if (slides.length === 0 || index < 0 || index >= slides.length) {
-         return;
-       }
-       
-       // If clicking the same slide, do nothing
-       if (currentSlide === index) {
-         return;
-       }
-       
-       // Hide any visible text overlay
-       const allSlideContent = document.querySelectorAll('.slide-content');
-       allSlideContent.forEach(content => {
-         content.classList.remove('show');
-       });
-       
-       // Clear any existing text timeout
-       if (textTimeout) {
-         clearTimeout(textTimeout);
-         textTimeout = null;
-       }
-       
-       // Remove active class from current slide and dot
-       if (slides[currentSlide]) {
-         slides[currentSlide].classList.remove('active');
-       }
-       if (dots[currentSlide]) {
-         dots[currentSlide].classList.remove('active');
-       }
-       
-       currentSlide = index;
-       
-       // Add active class to new slide and dot
-       if (slides[currentSlide]) {
-         slides[currentSlide].classList.add('active');
-       }
-       if (dots[currentSlide]) {
-         dots[currentSlide].classList.add('active');
-       }
-       
-       // If this is the last slide, show text overlay after 3 seconds
-       if (currentSlide === poolImages.length - 1) {
-         textTimeout = setTimeout(() => {
-           const activeSlide = slides[currentSlide];
-           if (activeSlide) {
-             const slideContent = activeSlide.querySelector('.slide-content');
-             if (slideContent) {
-               slideContent.classList.add('show');
-               
-               // Hide text after 10 seconds and restart slideshow
-               setTimeout(() => {
-                 slideContent.classList.remove('show');
-                 // Restart slideshow from beginning
-                 goToSlide(0);
-               }, 10000);
-             }
-           }
-         }, 3000);
-       }
-     }
+      slideshow.innerHTML = '';
+      dotsContainer.innerHTML = '';
 
-    function nextSlide() {
-      const next = (currentSlide + 1) % poolImages.length;
-      console.log(`Moving from slide ${currentSlide} to slide ${next}`);
-      
-      // Don't advance if we're on the last slide and text is showing
-      const activeSlide = document.querySelector('.slide.active');
-      if (activeSlide && currentSlide === poolImages.length - 1) {
-        const slideContent = activeSlide.querySelector('.slide-content');
-        if (slideContent && slideContent.classList.contains('show')) {
-          console.log('Text is showing on last slide, not advancing');
-          return;
-        }
-      }
-      
-      goToSlide(next);
+      // Build slides + dots
+      poolImages.forEach((img, i) => {
+        const slide = document.createElement('div');
+        slide.className = `slide ${i === 0 ? 'active' : ''}`;
+        slide.innerHTML = `
+          <img src="${img.src}" alt="${img.title}" loading="${i === 0 ? 'eager' : 'lazy'}">
+          <div class="slide-content">
+            <h3 class="slide-title">${img.title}</h3>
+            <p class="slide-description">${img.description}</p>
+          </div>`;
+        slideshow.appendChild(slide);
+
+        const dot = document.createElement('div');
+        dot.className = `dot ${i === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => {
+          stopSlideshow();
+          clearTextTimeout();
+          goToSlide(i);
+          startSlideshow();
+        });
+        dotsContainer.appendChild(dot);
+      });
+
+      startSlideshow();
     }
 
-    function prevSlide() {
-      const prev = (currentSlide - 1 + poolImages.length) % poolImages.length;
-      goToSlide(prev);
-    }
-
-    function startSlideshow() {
-      // Clear any existing interval
-      if (slideInterval) {
-        clearInterval(slideInterval);
-      }
-      slideInterval = setInterval(nextSlide, 3000);
-      console.log('Slideshow started - will change every 3 seconds');
-      
-      // Test the interval is working
-      setTimeout(() => {
-        console.log('Slideshow interval test - current slide:', currentSlide);
-      }, 1000);
+    function clearTextTimeout() {
+      if (textTimeout) { clearTimeout(textTimeout); textTimeout = null; }
     }
 
     function stopSlideshow() {
-      clearInterval(slideInterval);
+      if (slideInterval) { clearInterval(slideInterval); slideInterval = null; }
     }
 
-         // Event listeners
-     document.addEventListener('DOMContentLoaded', function() {
-       console.log('DOM Content Loaded - Initializing slideshow...');
-       
-       const nextBtn = document.getElementById('nextBtn');
-       const prevBtn = document.getElementById('prevBtn');
-       
-       if (nextBtn) {
-         nextBtn.addEventListener('click', () => {
-           console.log('Next button clicked');
-           nextSlide();
-           stopSlideshow();
-           startSlideshow();
-         });
-       }
-       
-       if (prevBtn) {
-         prevBtn.addEventListener('click', () => {
-           console.log('Previous button clicked');
-           prevSlide();
-           stopSlideshow();
-           startSlideshow();
-         });
-       }
-       
-       // Initialize slideshow
-       initSlideshow();
-       
-       // Add fade-in animation to elements when they come into view
-       const observerOptions = {
-         threshold: 0.1,
-         rootMargin: '0px 0px -50px 0px'
-       };
-       
-       const observer = new IntersectionObserver(function(entries) {
-         entries.forEach(entry => {
-           if (entry.isIntersecting) {
-             entry.target.classList.add('fade-in-up');
-           }
-         });
-       }, observerOptions);
-       
-       document.querySelectorAll('.service-card, .section-header, .about-content').forEach(el => {
-         observer.observe(el);
-       });
-     });
+    function startSlideshow() {
+      stopSlideshow();
+      slideInterval = setInterval(nextSlide, 3000);
+    }
 
-    // Mobile menu toggle
-    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-      const nav = document.querySelector('.nav');
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    });
+    function setDotActive(index) {
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach(d => d.classList.remove('active'));
+      if (dots[index]) dots[index].classList.add('active');
+    }
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    function hideAllOverlays() {
+      document.querySelectorAll('.slide-content').forEach(el => el.classList.remove('show'));
+    }
+
+    function goToSlide(index) {
+      const slides = document.querySelectorAll('.slide');
+      if (!slides.length) return;
+      if (index < 0 || index >= slides.length) return;
+
+      hideAllOverlays();
+      clearTextTimeout();
+
+      // Swap active
+      slides[currentSlide]?.classList.remove('active');
+      currentSlide = index;
+      slides[currentSlide]?.classList.add('active');
+      setDotActive(currentSlide);
+
+      // If last slide: pause, show overlay for 10s, then jump to first and resume
+      if (currentSlide === LAST_INDEX) {
+        stopSlideshow(); // pause auto-advance immediately
+        const overlay = slides[currentSlide].querySelector('.slide-content');
+        if (overlay) overlay.classList.add('show');
+
+        textTimeout = setTimeout(() => {
+          overlay?.classList.remove('show');
+          goToSlide(0);
+          startSlideshow();
+        }, 10000); // 10 seconds visible
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide === LAST_INDEX) {
+        // Safety: if the timer hasn't triggered yet, do nothing (we pause on last slide)
+        return;
+      }
+      goToSlide((currentSlide + 1) % poolImages.length);
+    }
+
+    function prevSlide() {
+      const idx = (currentSlide - 1 + poolImages.length) % poolImages.length;
+      goToSlide(idx);
+    }
+
+    // DOM Ready
+    document.addEventListener('DOMContentLoaded', () => {
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+
+      nextBtn?.addEventListener('click', () => {
+        stopSlideshow();
+        clearTextTimeout();
+        // If currently on last slide (overlay might be showing), move to first
+        if (currentSlide === LAST_INDEX) {
+          hideAllOverlays();
+          goToSlide(0);
+        } else {
+          nextSlide();
+        }
+        startSlideshow();
+      });
+
+      prevBtn?.addEventListener('click', () => {
+        stopSlideshow();
+        clearTextTimeout();
+        hideAllOverlays();
+        prevSlide();
+        startSlideshow();
+      });
+
+      initSlideshow();
+
+      // Mobile menu toggle
+      document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+        const nav = document.querySelector('.nav');
+        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+      });
+
+      // Smooth scrolling for nav links
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(a.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      // Contact form (demo)
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+        const submitText = document.getElementById('submitText');
+        const submitLoading = document.getElementById('submitLoading');
+        submitText.style.display = 'none';
+        submitLoading.style.display = 'inline-block';
+        setTimeout(() => {
+          alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+          this.reset();
+          submitText.style.display = 'inline';
+          submitLoading.style.display = 'none';
+        }, 2000);
+      });
+
+      // Header scroll effect
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+          header.style.background = 'rgba(255, 255, 255, 0.98)';
+          header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+        } else {
+          header.style.background = 'rgba(255, 255, 255, 0.95)';
+          header.style.boxShadow = 'none';
         }
       });
+
+      // Footer year
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Fade-in observer
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('fade-in-up'); });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      document.querySelectorAll('.service-card, .section-header, .about-content').forEach(el => observer.observe(el));
     });
-
-    // Contact form handling
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const submitText = document.getElementById('submitText');
-      const submitLoading = document.getElementById('submitLoading');
-      
-      // Show loading state
-      submitText.style.display = 'none';
-      submitLoading.style.display = 'inline-block';
-      
-      // Simulate form submission (replace with actual form handling)
-      setTimeout(() => {
-        alert('Thank you for your message! We\'ll get back to you within 24 hours.');
-        this.reset();
-        submitText.style.display = 'inline';
-        submitLoading.style.display = 'none';
-      }, 2000);
-    });
-
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
-      const header = document.querySelector('header');
-      if (window.scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
-        header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-      } else {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.boxShadow = 'none';
-      }
-    });
-
-    // Set current year in footer
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-
   </script>
 </body>
 </html>
