@@ -290,18 +290,26 @@
       z-index: 2;
     }
 
-    .slide-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      color: var(--white);
-      padding: 40px 20px 20px;
-      text-align: center;
-      z-index: 3;
-      pointer-events: none;
-    }
+         .slide-content {
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       background: linear-gradient(transparent, rgba(0,0,0,0.8));
+       color: var(--white);
+       padding: 40px 20px 20px;
+       text-align: center;
+       z-index: 3;
+       pointer-events: none;
+       opacity: 0;
+       visibility: hidden;
+       transition: opacity 0.5s ease, visibility 0.5s ease;
+     }
+     
+     .slide-content.show {
+       opacity: 1;
+       visibility: visible;
+     }
 
     .slide img {
       width: 100%;
@@ -974,9 +982,10 @@
       }
     ];
 
-    // Slideshow functionality
-    let currentSlide = 0;
-    let slideInterval;
+         // Slideshow functionality
+     let currentSlide = 0;
+     let slideInterval;
+     let textTimeout;
 
          function initSlideshow() {
        console.log('Initializing slideshow...');
@@ -1023,42 +1032,85 @@
        }, 1000);
      }
 
-    function goToSlide(index) {
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dot');
-      
-      // Ensure we have valid slides
-      if (slides.length === 0 || index < 0 || index >= slides.length) {
-        return;
-      }
-      
-      // If clicking the same slide, do nothing
-      if (currentSlide === index) {
-        return;
-      }
-      
-      // Remove active class from current slide and dot
-      if (slides[currentSlide]) {
-        slides[currentSlide].classList.remove('active');
-      }
-      if (dots[currentSlide]) {
-        dots[currentSlide].classList.remove('active');
-      }
-      
-      currentSlide = index;
-      
-      // Add active class to new slide and dot
-      if (slides[currentSlide]) {
-        slides[currentSlide].classList.add('active');
-      }
-      if (dots[currentSlide]) {
-        dots[currentSlide].classList.add('active');
-      }
-    }
+         function goToSlide(index) {
+       const slides = document.querySelectorAll('.slide');
+       const dots = document.querySelectorAll('.dot');
+       
+       // Ensure we have valid slides
+       if (slides.length === 0 || index < 0 || index >= slides.length) {
+         return;
+       }
+       
+       // If clicking the same slide, do nothing
+       if (currentSlide === index) {
+         return;
+       }
+       
+       // Hide any visible text overlay
+       const allSlideContent = document.querySelectorAll('.slide-content');
+       allSlideContent.forEach(content => {
+         content.classList.remove('show');
+       });
+       
+       // Clear any existing text timeout
+       if (textTimeout) {
+         clearTimeout(textTimeout);
+         textTimeout = null;
+       }
+       
+       // Remove active class from current slide and dot
+       if (slides[currentSlide]) {
+         slides[currentSlide].classList.remove('active');
+       }
+       if (dots[currentSlide]) {
+         dots[currentSlide].classList.remove('active');
+       }
+       
+       currentSlide = index;
+       
+       // Add active class to new slide and dot
+       if (slides[currentSlide]) {
+         slides[currentSlide].classList.add('active');
+       }
+       if (dots[currentSlide]) {
+         dots[currentSlide].classList.add('active');
+       }
+       
+       // If this is the last slide, show text overlay after 3 seconds
+       if (currentSlide === poolImages.length - 1) {
+         textTimeout = setTimeout(() => {
+           const activeSlide = slides[currentSlide];
+           if (activeSlide) {
+             const slideContent = activeSlide.querySelector('.slide-content');
+             if (slideContent) {
+               slideContent.classList.add('show');
+               
+               // Hide text after 10 seconds and restart slideshow
+               setTimeout(() => {
+                 slideContent.classList.remove('show');
+                 // Restart slideshow from beginning
+                 goToSlide(0);
+               }, 10000);
+             }
+           }
+         }, 3000);
+       }
+     }
 
     function nextSlide() {
       const next = (currentSlide + 1) % poolImages.length;
       console.log(`Moving from slide ${currentSlide} to slide ${next}`);
+      
+      // Don't advance if we're on the last slide and text is showing
+      const activeSlide = document.querySelector('.slide.active');
+      if (activeSlide && currentSlide === poolImages.length - 1) {
+        const slideContent = activeSlide.querySelector('.slide-content');
+        if (slideContent && slideContent.classList.contains('show')) {
+          console.log('Text is showing on last slide, not advancing');
+          return;
+        }
+      }
+      
       goToSlide(next);
     }
 
@@ -1074,6 +1126,11 @@
       }
       slideInterval = setInterval(nextSlide, 3000);
       console.log('Slideshow started - will change every 3 seconds');
+      
+      // Test the interval is working
+      setTimeout(() => {
+        console.log('Slideshow interval test - current slide:', currentSlide);
+      }, 1000);
     }
 
     function stopSlideshow() {
