@@ -97,7 +97,7 @@
     }
 
     .logo img {
-      height: 50px;
+      height: 75px;
       width: auto;
     }
 
@@ -978,45 +978,50 @@
     let currentSlide = 0;
     let slideInterval;
 
-    function initSlideshow() {
-      const slideshow = document.getElementById('slideshow');
-      const dotsContainer = document.getElementById('dots');
-      
-      if (!slideshow || !dotsContainer) {
-        console.error('Slideshow elements not found');
-        return;
-      }
-      
-      // Clear any existing content
-      slideshow.innerHTML = '';
-      dotsContainer.innerHTML = '';
-      
-      // Create slides
-      poolImages.forEach((image, index) => {
-        const slide = document.createElement('div');
-        slide.className = `slide ${index === 0 ? 'active' : ''}`;
-        
-        slide.innerHTML = `
-          <img src="${image.src}" alt="${image.title}" loading="eager">
-          <div class="slide-content">
-            <h3 class="slide-title">${image.title}</h3>
-            <p class="slide-description">${image.description}</p>
-          </div>
-        `;
-        slideshow.appendChild(slide);
-        
-        // Create dots
-        const dot = document.createElement('div');
-        dot.className = `dot ${index === 0 ? 'active' : ''}`;
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-      });
-      
-      // Start slideshow after a short delay
-      setTimeout(() => {
-        startSlideshow();
-      }, 1000);
-    }
+         function initSlideshow() {
+       console.log('Initializing slideshow...');
+       const slideshow = document.getElementById('slideshow');
+       const dotsContainer = document.getElementById('dots');
+       
+       if (!slideshow || !dotsContainer) {
+         console.error('Slideshow elements not found');
+         return;
+       }
+       
+       console.log('Found slideshow elements, creating slides...');
+       
+       // Clear any existing content
+       slideshow.innerHTML = '';
+       dotsContainer.innerHTML = '';
+       
+       // Create slides
+       poolImages.forEach((image, index) => {
+         const slide = document.createElement('div');
+         slide.className = `slide ${index === 0 ? 'active' : ''}`;
+         
+         slide.innerHTML = `
+           <img src="${image.src}" alt="${image.title}" loading="eager">
+           <div class="slide-content">
+             <h3 class="slide-title">${image.title}</h3>
+             <p class="slide-description">${image.description}</p>
+           </div>
+         `;
+         slideshow.appendChild(slide);
+         
+         // Create dots
+         const dot = document.createElement('div');
+         dot.className = `dot ${index === 0 ? 'active' : ''}`;
+         dot.addEventListener('click', () => goToSlide(index));
+         dotsContainer.appendChild(dot);
+       });
+       
+       console.log(`Created ${poolImages.length} slides, starting slideshow in 1 second...`);
+       
+       // Start slideshow after a short delay
+       setTimeout(() => {
+         startSlideshow();
+       }, 1000);
+     }
 
     function goToSlide(index) {
       const slides = document.querySelectorAll('.slide');
@@ -1075,45 +1080,52 @@
       clearInterval(slideInterval);
     }
 
-    // Event listeners
-    document.addEventListener('DOMContentLoaded', function() {
-      const nextBtn = document.getElementById('nextBtn');
-      const prevBtn = document.getElementById('prevBtn');
-      const slideshow = document.getElementById('slideshow');
-      
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          console.log('Next button clicked');
-          nextSlide();
-          stopSlideshow();
-          startSlideshow();
-        });
-      }
-      
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          console.log('Previous button clicked');
-          prevSlide();
-          stopSlideshow();
-          startSlideshow();
-        });
-      }
-      
-      if (slideshow) {
-        // Pause slideshow on hover
-        slideshow.addEventListener('mouseenter', () => {
-          console.log('Slideshow paused on hover');
-          stopSlideshow();
-        });
-        slideshow.addEventListener('mouseleave', () => {
-          console.log('Slideshow resumed after hover');
-          startSlideshow();
-        });
-      }
-      
-      // Initialize slideshow
-      initSlideshow();
-    });
+         // Event listeners
+     document.addEventListener('DOMContentLoaded', function() {
+       console.log('DOM Content Loaded - Initializing slideshow...');
+       
+       const nextBtn = document.getElementById('nextBtn');
+       const prevBtn = document.getElementById('prevBtn');
+       
+       if (nextBtn) {
+         nextBtn.addEventListener('click', () => {
+           console.log('Next button clicked');
+           nextSlide();
+           stopSlideshow();
+           startSlideshow();
+         });
+       }
+       
+       if (prevBtn) {
+         prevBtn.addEventListener('click', () => {
+           console.log('Previous button clicked');
+           prevSlide();
+           stopSlideshow();
+           startSlideshow();
+         });
+       }
+       
+       // Initialize slideshow
+       initSlideshow();
+       
+       // Add fade-in animation to elements when they come into view
+       const observerOptions = {
+         threshold: 0.1,
+         rootMargin: '0px 0px -50px 0px'
+       };
+       
+       const observer = new IntersectionObserver(function(entries) {
+         entries.forEach(entry => {
+           if (entry.isIntersecting) {
+             entry.target.classList.add('fade-in-up');
+           }
+         });
+       }, observerOptions);
+       
+       document.querySelectorAll('.service-card, .section-header, .about-content').forEach(el => {
+         observer.observe(el);
+       });
+     });
 
     // Mobile menu toggle
     document.getElementById('mobileMenuBtn').addEventListener('click', function() {
@@ -1170,25 +1182,7 @@
     // Set current year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    // Add fade-in animation to elements when they come into view
-    document.addEventListener('DOMContentLoaded', function() {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-      
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in-up');
-          }
-        });
-      }, observerOptions);
-      
-      document.querySelectorAll('.service-card, .section-header, .about-content').forEach(el => {
-        observer.observe(el);
-      });
-    });
+
   </script>
 </body>
 </html>
