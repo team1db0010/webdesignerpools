@@ -76,21 +76,22 @@ This is a modern, single-page website built to showcase Designer Pools' work and
 
 ```
 webdesignerpools/
-├── index.html              # Main website file (all-in-one)
-├── images/                 # Pool project photos
-│   ├── IMG_0702.jpg       # Hero image
-│   ├── IMG_0703.jpg       # Slideshow images
-│   └── ...
-├── logo/                  # Company branding
-│   └── logo_banner.png    # Logo image
-├── netlify.toml           # Netlify configuration
-├── package.json           # Build scripts
-├── gen-images-manifest.mjs # Image manifest generator
-├── README.md              # This file
-├── QUICK-START.md         # Quick deployment guide
-├── IMPROVEMENTS.md        # Technical improvements doc
-├── IMPROVEMENTS-SUMMARY.md # Overview of changes
-└── IMAGE-OPTIMIZATION-GUIDE.md # Image optimization help
+├── public/                    # Deployed website files
+│   ├── index.html            # Main website file (all-in-one)
+│   ├── images/               # Pool project photos
+│   │   ├── IMG_0702.jpg     # Hero image
+│   │   ├── IMG_0703.jpg     # Slideshow images
+│   │   └── ...
+│   └── logo/                 # Company branding
+│       └── logo_banner.png   # Logo image
+├── .cursorrules              # Cursor AI project rules (not deployed)
+├── .gitignore               # Git ignore file
+├── CHANGELOG.md             # Change log (not deployed)
+├── netlify.toml             # Netlify configuration
+├── package.json             # Build scripts
+├── gen-images-manifest.mjs  # Image manifest generator
+├── PROJECT_CONTEXT.md       # Project context (not deployed)
+└── README.md                # This file (not deployed)
 ```
 
 ---
@@ -113,16 +114,16 @@ webdesignerpools/
 2. **Open in browser**
    ```bash
    # Windows
-   start index.html
+   start public/index.html
    
    # Mac
-   open index.html
+   open public/index.html
    
-   # Or just double-click index.html
+   # Or just double-click public/index.html
    ```
 
 3. **Make changes**
-   - Edit `index.html` directly
+   - Edit `public/index.html` directly
    - All styles are inline in `<style>` tags
    - All scripts are inline in `<script>` tags
 
