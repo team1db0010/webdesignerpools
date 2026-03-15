@@ -4,6 +4,33 @@ All notable changes to the Designer Pools website will be documented in this fil
 
 ---
 
+## [2026-03-15] - Content Updates & Gallery Expansion
+
+### Added
+- 10 new pool project images to gallery (IMG_5393-5402)
+- Licensed & Insured SVG badge to contact section
+- "Licensed & Insured" text to footer
+
+### Changed
+- Updated all gallery image labels with accurate project descriptions
+- Expanded gallery from 9 to 19 total images
+- Updated hero subtitle to emphasize trust and family legacy
+- Updated About section to include Colin Barker as Managing Partner
+- Replaced all sample testimonials with real customer reviews:
+  - Rand Bowdoin (Overland Park, KS)
+  - Jeff Melcher (Lake of the Ozarks, MO)
+  - Jeff Keeling (Overland Park, KS)
+
+### Fixed
+- Form submission error handling now properly checks response.ok
+- Form now correctly shows error messages on failed submissions (404, 500, etc.)
+
+### Removed
+- Phone number and hours from contact section (temporarily)
+- Licensed & Insured badge from hero section (moved to contact)
+
+---
+
 ## [2026-03-15] - Project Restructure
 
 ### Changed

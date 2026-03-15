@@ -36,11 +36,12 @@ This is a modern, single-page website built to showcase Designer Pools' work and
 
 ✅ **Fully Responsive** - Optimized for mobile, tablet, and desktop  
 ✅ **Working Contact Form** - Netlify Forms integration with spam protection  
-✅ **Customer Testimonials** - Social proof with ratings and reviews  
+✅ **Real Customer Testimonials** - Authentic reviews from Rand Bowdoin, Jeff Melcher, and Jeff Keeling  
 ✅ **SEO Optimized** - Schema.org structured data for Google  
 ✅ **Accessibility** - WCAG 2.1 compliant with keyboard navigation  
-✅ **Image Gallery** - Auto-playing slideshow with manual controls  
+✅ **19-Image Gallery** - Auto-playing slideshow with residential, commercial, and HOA projects  
 ✅ **Fast Loading** - Lazy loading, async images, optimized assets  
+✅ **Licensed & Insured Badge** - Trust signals in contact section and footer  
 ✅ **Print Friendly** - Proper print styles included  
 
 ---
@@ -78,12 +79,15 @@ This is a modern, single-page website built to showcase Designer Pools' work and
 webdesignerpools/
 ├── public/                    # Deployed website files
 │   ├── index.html            # Main website file (all-in-one)
-│   ├── images/               # Pool project photos
-│   │   ├── IMG_0702.jpg     # Hero image
-│   │   ├── IMG_0703.jpg     # Slideshow images
+│   ├── images/               # Pool project photos (19 images)
+│   │   ├── IMG_0702.jpg     # Residential pools
+│   │   ├── IMG_5389.jpg     # HOA/Waterpark projects
+│   │   ├── IMG_5393.jpeg    # Infinity edge pool
+│   │   ├── IMG_5394.jpeg    # 3D designs
 │   │   └── ...
 │   └── logo/                 # Company branding
-│       └── logo_banner.png   # Logo image
+│       ├── logo_banner.png   # Logo image
+│       └── licensed_insured_badge.svg # Badge
 ├── .cursorrules              # Cursor AI project rules (not deployed)
 ├── .gitignore               # Git ignore file
 ├── CHANGELOG.md             # Change log (not deployed)
@@ -272,7 +276,12 @@ Edit service cards (line ~370):
 
 ### Testimonials
 
-Edit testimonial cards (line ~450):
+Current testimonials feature real customers:
+- **Rand Bowdoin** (Overland Park, KS) - Custom backyard oasis
+- **Jeff Melcher** (Lake of the Ozarks, MO) - Lake house infinity pool
+- **Jeff Keeling** (Overland Park, KS) - Custom hot tub with waterfall
+
+Edit testimonial cards (line ~510):
 ```html
 <div class="testimonial-card">
   <div class="testimonial-quote">Customer quote...</div>
