@@ -2,6 +2,6 @@
   "name": "pool-site",
   "private": true,
   "scripts": {
-    "build": "node gen-images-manifest.mjs && echo 'Build complete'"
+    "build": "echo 'No build needed - static site'"
   }
 }
